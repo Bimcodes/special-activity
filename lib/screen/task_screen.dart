@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:my_day/modules/task_data.dart';
 import 'package:my_day/screen/add_task_screen.dart';
+import 'package:my_day/screen/bottomNavigationBar.dart';
 import 'package:my_day/widgets/tasks_list.dart';
 import 'package:provider/provider.dart';
 
+import '../constants/colors.dart';
+
 class TaskScreen extends StatelessWidget {
+  const TaskScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.tealAccent,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: link,
+        centerTitle: true,
+        title: const Text('Add Task'),
+      ),
+      backgroundColor: link,
       body: Column(
         // I'm using a nested column here
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -19,14 +30,14 @@ class TaskScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 40,
                   backgroundColor: Colors.white,
                   child: Icon(
                     Icons.list,
                     size: 60,
                     weight: 15,
-                    color: Colors.tealAccent,
+                    color: link,
                   ),
                 ),
                 const SizedBox(
@@ -71,7 +82,7 @@ class TaskScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.tealAccent,
+        backgroundColor: link,
         onPressed: () {
           showModalBottomSheet(
             context: context,
@@ -80,7 +91,7 @@ class TaskScreen extends StatelessWidget {
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 // The above line help to position the bottomsheet above the Keyboard
-                child: AddTaskScreen(),
+                child: const AddTaskScreen(),
                 // {
                 //   // setState(() {
                 //   //   Provider.of<TaskData>(context)
@@ -99,6 +110,7 @@ class TaskScreen extends StatelessWidget {
           size: 50,
         ),
       ),
+      bottomNavigationBar: const BottomScreen(),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_day/modules/task_data.dart';
 import 'package:provider/provider.dart';
+
+import '../constants/colors.dart';
 // import 'package:my_day/constants/routes.dart';
 
 class AddTaskScreen extends StatelessWidget {
@@ -11,7 +13,7 @@ class AddTaskScreen extends StatelessWidget {
     late String newTaskTitle;
 
     return Container(
-      color: const Color(0xff757575),
+      color: offWhite,
       child: Container(
         padding: const EdgeInsets.all(25),
         decoration: const BoxDecoration(
@@ -27,13 +29,13 @@ class AddTaskScreen extends StatelessWidget {
             const Text(
               'Add Task',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 35.0, color: Colors.tealAccent),
+              style: TextStyle(fontSize: 35.0, color: Colors.black),
             ),
             TextField(
               autofocus: true,
               // What autofocus does is thst the moment i tap the add icon, it brings up the keypad directly
               textAlign: TextAlign.center,
-              decoration: const InputDecoration(fillColor: Colors.tealAccent),
+              decoration: InputDecoration(fillColor: link),
               onChanged: (newText) {
                 newTaskTitle = newText;
               },
@@ -48,7 +50,7 @@ class AddTaskScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.tealAccent),
+                backgroundColor: MaterialStateProperty.all(link),
                 // This function above helps to define the color
               ),
               child: const Text(

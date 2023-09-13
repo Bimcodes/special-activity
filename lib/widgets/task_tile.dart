@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:my_day/constants/colors.dart';
 
 class TaskTile extends StatelessWidget {
   final bool isChecked;
@@ -19,11 +20,13 @@ class TaskTile extends StatelessWidget {
     return ListTile(
       title: Text(
         taskTitle,
-        style: TextStyle(
-            decoration: isChecked ? TextDecoration.lineThrough : null),
+        style:
+            TextStyle(decoration: isChecked ? TextDecoration.lineThrough : null
+                // this line of code takes in a bool to add the line through
+                ),
       ),
       trailing: Checkbox(
-        activeColor: Colors.tealAccent,
+        activeColor: link,
         value: isChecked,
         onChanged: checkboxCallback,
       ),
