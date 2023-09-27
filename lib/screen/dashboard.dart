@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_day/modules/data_model.dart';
+import 'package:my_day/cubit/name_cubit.dart';
+//import 'package:my_day/modules/data_model.dart';
 import 'package:my_day/screen/bottomNavigationBar.dart';
 import 'package:provider/provider.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/colors.dart';
 import '../constants/size_config.dart';
 import '../modules/task_data.dart';
 
-class Dashboard extends StatelessWidget {
-  const Dashboard({
-    super.key,
-  });
+class Dashboard extends StatefulWidget {
+  const Dashboard({super.key});
 
   @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+  @override
   Widget build(BuildContext context) {
-    final datamodel = Provider.of<DataModel>(context);
+    // final datamodel = Provider.of<DataModel>(context);
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: link,
@@ -49,14 +56,18 @@ class Dashboard extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text(
-                              'Hello ${datamodel.nickName}',
-                              style: TextStyle(
-                                color: black,
-                                fontSize: h(16, context),
-                                fontWeight: FontWeight.w400,
-                              ),
-                            )
+                            BlocBuilder<NameCubit, String>(
+                              builder: (context, state) {
+                                return Text(
+                                  'Hello $state',
+                                  style: TextStyle(
+                                    color: black,
+                                    fontSize: h(16, context),
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                );
+                              },
+                            ),
                           ],
                         )
                       ]),
@@ -108,74 +119,6 @@ class Dashboard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: h(20, context),
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: w(25, context), right: w(15, context)),
-                          child: Container(
-                            height: h(180, context),
-                            width: 163.5,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: blue,
-                            ),
-                            child: const Center(child: Text('Abimbola')),
-                          ),
-                        ),
-                        const Divider(),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: w(15, context), right: w(10, context)),
-                          child: Container(
-                            height: h(180, context),
-                            width: 163.5,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: blue,
-                            ),
-                            child: const Center(child: Text('Abimbola')),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: h(15, context),
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: w(25, context), right: w(15, context)),
-                          child: Container(
-                            height: h(180, context),
-                            width: 163.5,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: blue,
-                            ),
-                            child: const Center(child: Text('Abimbola')),
-                          ),
-                        ),
-                        const Divider(),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: w(15, context), right: w(10, context)),
-                          child: Container(
-                            height: h(180, context),
-                            width: 163.5,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: blue,
-                            ),
-                            child: const Center(child: Text('Abimbola')),
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               )
@@ -185,3 +128,4 @@ class Dashboard extends StatelessWidget {
         bottomNavigationBar: const BottomScreen());
   }
 }
+// BlocProvider.of<NameCubit>(context).toString()

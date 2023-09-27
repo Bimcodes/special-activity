@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_day/screen/dashboard.dart';
-import 'package:my_day/screen/note_pad.dart';
 import 'package:my_day/screen/task_screen.dart';
 import '../constants/bottomNavigationBarItem.dart';
 import '../constants/colors.dart';
@@ -36,14 +35,6 @@ class BottomScreen extends StatelessWidget {
               },
               icon: const Icon(Icons.add_circle)),
           label: 'Add Task',
-        ),
-        bottomNavigationBarItem(
-          icon: IconButton(
-              onPressed: () {
-                Get.to(() => const NotePad());
-              },
-              icon: const Icon(Icons.note_add)),
-          label: 'Notepad',
         ),
       ],
     );
